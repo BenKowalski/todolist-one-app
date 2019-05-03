@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "node"
 script:
-  -
+  - echo "Deploy"
 deploy:
   provider: firebase
   token:
