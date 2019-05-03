@@ -2,4 +2,4 @@ deploy:
   provider: firebase
   token:
     secure: $FIREBASE_TOKEN
-  project: "togolist-one"
+  project: "todolist-one"
