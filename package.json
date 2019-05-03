@@ -1,0 +1,27 @@
+{
+  "name": "todolist-one-app",
+  "version": "0.0.1",
+  "description": "A todolist app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenKowalski/todolist-one-app.git"
+  },
+  "keywords": [
+    "todo",
+    "todolist",
+    "todolist-one"
+  ],
+  "author": "Benjamin Kowalski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BenKowalski/todolist-one-app/issues"
+  },
+  "homepage": "https://github.com/BenKowalski/todolist-one-app#readme",
+  "dependencies": {
+    "eslint": "^5.16.0"
+  }
+}
