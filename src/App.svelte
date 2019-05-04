@@ -1,8 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 	import { router } from './stores/router-store.js'
-	import { listsStore, listsStoreInit } from './stores/lists-store.js'
 	import { authStore, authInit } from './stores/auth-store.js'
+	import { listsStore, listsStoreInit } from './stores/lists-store.js'
+	import { todosStore, todosStoreInit } from './stores/todos-store.js'
 
 	import WelcomeOverlay from './overlays/welcome-overlay.svelte'
 	import UiMainNav from './ui/ui-main-nav.svelte'
@@ -12,6 +13,7 @@
 		initFirebase()
 		authInit()
 		listsStoreInit()
+		todosStoreInit()
 	})
 
 	const initFirebase = () => {

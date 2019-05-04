@@ -1,16 +1,27 @@
 import { writable } from 'svelte/store';
+import { router } from '../stores/router-store.js'
 import { authStore } from '../stores/auth-store.js'
 
 export const listsStore = writable({
+	listActive: null,
 	json: {},
 	array: []
 })
 
-let listener
+let listener,
+	routerSubview
 
 
 export function listsStoreInit() {
 	setListener()
+
+	router.subscribe(routerData => {
+		routerSubview = routerData.subview
+		listsStore.update(data => {
+			data.listActive = (data.json && data.json[routerSubview]) ? data.json[routerSubview] : null
+			return data
+		})
+	})
 }
 
 function setListener() {
@@ -32,12 +43,14 @@ function setListener() {
 						listsStore.update(data => {
 							data.json[change.doc.data().slug] = listData
 							data.array = Object.keys(data.json).map(el => data.json[el])
+							data.listActive = (data.json && data.json[routerSubview]) ? data.json[routerSubview] : null
 							return data
 						})
 					} else if (change.type === 'removed') {
 						listsStore.update(data => {
 							delete data.json[change.doc.data().slug]
 							data.array = Object.keys(data.json).map(el => data.json[el])
+							data.listActive = (data.json && data.json[routerSubview]) ? data.json[routerSubview] : null
 							return data
 						})
 					}
@@ -46,6 +59,8 @@ function setListener() {
 		}
 	})
 }
+
+
 
 export function listsStoreNewList(title, callback) {
 
@@ -63,6 +78,8 @@ export function listsStoreNewList(title, callback) {
 	})
 	unsubscribe()
 }
+
+
 
 function slugify(string) {
   const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;'
