@@ -3,9 +3,15 @@
 	import { listsStore } from '../stores/lists-store.js'
 </script>
 
-<h2>
-	{$listsStore.json[$router.subview].title}
-</h2>
+{#if $router && $listsStore && $listsStore.json && %$listsStore.json[$router.subview]}
+	<h2>
+		{$listsStore.json[$router.subview].title}
+	</h2>
+{:else}
+	<p>
+		This list doesn't seem to exist
+	</p>
+{/if}
 
 <style>
 	
