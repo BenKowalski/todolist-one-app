@@ -1,13 +1,17 @@
 <script>
 	import { onMount } from 'svelte';
 	import { router } from './stores/router-store.js'
+	import { listsStore, listsStoreInit } from './stores/lists-store.js'
 	import { authStore, authInit } from './stores/auth-store.js'
 
 	import WelcomeOverlay from './overlays/welcome-overlay.svelte'
+	import UiMainNav from './ui/ui-main-nav.svelte'
+	import ListView from './list/list-view.svelte'
 
 	onMount(() => {
 		initFirebase()
 		authInit()
+		listsStoreInit()
 	})
 
 	const initFirebase = () => {
@@ -30,20 +34,12 @@
 </script>
 
 {#if $authStore.inited && $authStore.user != null}
-	<a href="/">
-		Start
-	</a>
-	<a href="/settings/">
-		Settings
-	</a>
-
-	<div>
-		{#if $router.view === 'start'}
-			Start
-		{:else if $router.view === 'settings'}
-			Settings
+	<UiMainNav />
+	<main>
+		{#if $router.view === 'lists' && $router.subview != null}
+			<ListView />
 		{/if}
-	</div>
+	</main>
 {:else if $authStore.inited && $authStore.user === null}
 	<WelcomeOverlay />
 {:else}
@@ -51,5 +47,7 @@
 {/if}
 
 <style>
-
+	main {
+		margin-left:300px;
+	}
 </style>
