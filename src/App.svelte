@@ -22,13 +22,19 @@
 			projectId: "todolist-one",
 			storageBucket: "todolist-one.appspot.com",
 			messagingSenderId: "240442505368"
-  		})
+		})
 
 		firebase.db = firebase.firestore()
 		firebase.store = firebase.storage()
 
 		firebase.db.settings({ 
 			timestampsInSnapshots: true
+		})
+
+		firebase.db.enablePersistence({
+			experimentalTabSynchronization: true
+		}).catch(err => {
+			console.log(err)
 		})
 	}
 </script>
