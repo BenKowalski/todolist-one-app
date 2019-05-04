@@ -3,7 +3,7 @@
 	import { listsStore } from '../stores/lists-store.js'
 </script>
 
-{#if $router && $listsStore && $listsStore.json && %$listsStore.json[$router.subview]}
+{#if $router && $listsStore && $listsStore.json && $listsStore.json[$router.subview]}
 	<h2>
 		{$listsStore.json[$router.subview].title}
 	</h2>
