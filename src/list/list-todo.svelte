@@ -3,7 +3,6 @@
 
 	export let data;
 	export let checked;
-	export let description;
 
 	const dispatch = createEventDispatcher();
 
@@ -17,8 +16,8 @@
 <label>
 	<input 
 		type="checkbox" 
-		bind:checked={checked} 
-		on:change={e => dispatch('change', {checked})} />
+		bind:checked={data.checked} 
+		on:change={e => dispatch('change', { checked: data.checked })} />
 	<div>
 		<p>
 			{data.title}
@@ -35,11 +34,11 @@
 <style>
 	label {
 		display:block;
-		margin:0 0 12px 0;
+		margin:0 0 6px -6px;
 	}
 
-	label:hover div:before, label:hover div:after{
-		border-color:#1951C2;
+	label:hover{
+		background:#F5F7FA;
 	}
 
 	input {
@@ -57,7 +56,7 @@
 
 	div {
 		position: relative;
-		padding:0 0 0 42px;
+		padding:6px 6px 6px 42px;
 		cursor: pointer;
 	}
 
@@ -68,6 +67,7 @@
 		user-select: none;
 		font-size:16.5px;
 		line-height:30px;
+		margin:0;
 	}
 
 	div small {
@@ -85,8 +85,8 @@
 		width:24px;
 		height:24px;
 		position:absolute;
-		top:4px;
-		left:0;
+		top:9px;
+		left:6px;
 		border:#1951C2 1px solid;
 		border-radius: 2px;
 		transition: all 150ms ease;
@@ -95,8 +95,8 @@
 	div:after {
 		width:6px;
 		height:11px;
-		top:8px;
-		left:9px;
+		top:13px;
+		left:15px;
 		border:#1951C2 3px solid;
 		border-top:0;
 		border-left:0;

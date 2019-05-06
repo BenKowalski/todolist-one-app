@@ -2,13 +2,11 @@ import { writable } from 'svelte/store';
 import { authStore } from '../stores/auth-store.js'
 
 export const todosStore = writable({
-	listId: null,
 	json: {},
 	array: []
 })
 
-let todosListener,
-	listenerId
+let todosListener = []
 
 
 export function todosStoreInit() {
@@ -19,20 +17,15 @@ export function todosStoreInit() {
 
 export function todosStoreSetListener(listId) {
 
-	if(listId != null && listenerId != listId) {
-		listenerId = listId
+	if(listId != null && !todosListener[listId]) {
 
-		todosStore.set({
-			listId,
-			json: {},
-			array: []
+		todosStore.update(data => {
+			data.json[listId] = {}
+			data.array[listId] = []
+			return data
 		})
 
-		if(todosListener) {
-			todosListener()
-		}
-
-		todosListener = firebase.db.collection('todos').where("list", "==", listId).onSnapshot(snapshot =>
+		todosListener[listId] = firebase.db.collection('todos').where('list', '==', listId).onSnapshot(snapshot =>
 			snapshot.docChanges().forEach(change => {
 								
 				if (change.type === 'added' || change.type === 'modified') {
@@ -42,14 +35,14 @@ export function todosStoreSetListener(listId) {
 					}, change.doc.data())
 
 					todosStore.update(data => {
-						data.json[change.doc.id] = todoData
-						data.array = Object.keys(data.json).map(el => data.json[el])
+						data.json[todoData.list][todoData.id] = todoData
+						data.array[todoData.list] = Object.keys(data.json[todoData.list]).map(el => data.json[todoData.list][el])
 						return data
 					})
 				} else if (change.type === 'removed') {
 					todosStore.update(data => {
-						delete data.json[change.doc.id]
-						data.array = Object.keys(data.json).map(el => data.json[el])
+						delete data.json[change.doc.change().list][change.doc.id]
+						data.array[change.doc.change().list] = Object.keys(data.json[change.doc.change().list]).map(el => data.json[change.doc.change().list][el])
 						return data
 					})
 				}
@@ -63,11 +56,13 @@ export function todosStoreNewTodo(listId, title, callback) {
 	firebase.db.collection('todos').doc().set({
 		list: listId,
 		title
-	}).then(() => {
-		console.log('document created');
-		callback(true)
-	}).catch(err => {
-		console.error('error: ', err);
-		callback(false)
+	}).then(() => callback(true)).catch(err => callback(false))
+}
+
+
+
+export function todosStoreToggleChecked(todoId, checked) {
+	firebase.db.collection('todos').doc(todoId).update({
+    	checked
 	})
 }
