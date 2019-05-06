@@ -4,6 +4,11 @@
 	import { todosStore, todosStoreSetListener, todosStoreNewTodo } from '../stores/todos-store.js'
 	import { onMount } from 'svelte'
 
+	import UiViewNav from '../ui/ui-view-nav.svelte'
+	import ListTodo from './list-todo.svelte'
+
+
+
 	let listActiveId = null,
 		newTodoPlaceholder = '+ Add Todo',
 		newTodoTitle = '',
@@ -25,15 +30,13 @@
 			
 			})
 
-			newTodoPlaceholder = ''	
+			newTodoTitle = ''	
 		}
 	}
 </script>
 
 {#if $listsStore.listActive}
-	<h2>
-		{$listsStore.listActive.title}
-	</h2>
+	<UiViewNav title={$listsStore.listActive.title} />
 
 	<input
 		type="text"
@@ -47,7 +50,7 @@
 	<ul>
 		{#each $todosStore.array as todo}
 			<li>
-				{todo.title}
+				<ListTodo data={todo} />
 			</li>
 		{/each}
 	</ul>
@@ -58,5 +61,25 @@
 {/if}
 
 <style>
-	
+
+	input {
+		margin:30px 36px 6px 36px;
+		width:calc(100% - 36px - 36px);
+		background:#E6EAF2;
+		border:0;
+		line-height:24px;
+		padding:12px 24px;
+		outline:none;
+	}
+
+	ul {
+		margin:0 36px;
+		padding:0;
+		list-style: none;
+	}
+
+	li {
+		margin:0;
+		padding:0;
+	}
 </style>
