@@ -1,6 +1,6 @@
 <script>
 	import { onMount, afterUpdate, createEventDispatcher } from 'svelte'
-	import { todosStoreUpdateTitle, todosStoreDelete } from '../stores/todos-store.js'
+	import { todosStoreToggleChecked, todosStoreUpdateTitle, todosStoreDelete } from '../stores/todos-store.js'
 
 	export let data
 	export let checked
