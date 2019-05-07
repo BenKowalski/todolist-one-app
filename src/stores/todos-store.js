@@ -41,8 +41,18 @@ export function todosStoreSetListener(listId) {
 					})
 				} else if (change.type === 'removed') {
 					todosStore.update(data => {
-						delete data.json[change.doc.change().list][change.doc.id]
-						data.array[change.doc.change().list] = Object.keys(data.json[change.doc.change().list]).map(el => data.json[change.doc.change().list][el])
+
+						var listIdOfTodo = null;
+						Object.keys(data.json).forEach(listKey => {
+							if( data.json[listKey][change.doc.id] ) {
+								listIdOfTodo = data.json[listKey][change.doc.id].list;
+							}
+						});
+
+						if(listIdOfTodo != null) {
+							delete data.json[listIdOfTodo][change.doc.id]
+							data.array[listIdOfTodo] = Object.keys(data.json[listIdOfTodo]).map(el => data.json[listIdOfTodo][el])
+						}
 						return data
 					})
 				}
@@ -65,4 +75,8 @@ export function todosStoreToggleChecked(todoId, checked) {
 	firebase.db.collection('todos').doc(todoId).update({
     	checked
 	})
+}
+
+export function todosStoreDelete(todoId) {
+	firebase.db.collection('todos').doc(todoId).delete()
 }
