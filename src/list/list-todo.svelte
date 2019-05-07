@@ -23,7 +23,7 @@
 <div class="todo {navOpened ? 'nav-opened' : ''}">
 	<div 
 		class="checkbox {data.checked ? 'checkbox-active' : ''}"
-		on:click={e => {console.log(data); todosStoreToggleChecked(data.id, !data.checked)}}></div>
+		on:click={e => todosStoreToggleChecked(data.id, !data.checked)}></div>
 
 	{#if !titleInputOpened}
 		<p on:dblclick={e => titleInputOpened = true}>
