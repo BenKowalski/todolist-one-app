@@ -25,12 +25,12 @@
 
 	function controlKeyDown(e, listId) {
 
-		if(e.keyCode === 13) {
+		if(e.keyCode === 13 && newTodoTitle.length >= 1) {
 			todosStoreNewTodo(listId, newTodoTitle, () => {
 			
 			})
 
-			newTodoTitle = ''	
+			newTodoTitle = ''
 		}
 	}
 
