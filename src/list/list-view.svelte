@@ -47,13 +47,19 @@
 		on:blur={e => { newTodoPlaceholder = 'What\'s to do?'; newTodoTitle = '' }}
 		on:keydown={e => controlKeyDown(e, $listsStore.listActive.id)} />
 
-	<ul>
-		{#each $todosStore.array[$listsStore.listActive.id] as todo}
-			<li>
-				<ListTodo data={todo} />
-			</li>
-		{/each}
-	</ul>
+	{#if $todosStore.array[$listsStore.listActive.id].length > 0}
+		<ul>
+			{#each $todosStore.array[$listsStore.listActive.id] as todo}
+				<li>
+					<ListTodo data={todo} />
+				</li>
+			{/each}
+		</ul>
+	{:else}
+		<p>
+			This list doesn't have any todo items. click into the field above to add one. If you need some help using Todolist One, please visit the <a href="https://todolist.one/help/">help section</a>.
+		</p>
+	{/if}
 {:else}
 	<p>
 		This list doesn't seem to exist
@@ -81,5 +87,13 @@
 	li {
 		margin:0;
 		padding:0;
+	}
+
+	p {
+		color:#555;
+		margin:30px auto;
+		padding:0 36px;
+		max-width: 660px;
+		text-align: center;
 	}
 </style>
