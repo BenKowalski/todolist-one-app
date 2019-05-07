@@ -36,7 +36,7 @@ export function todosStoreSetListener(listId) {
 
 					todosStore.update(data => {
 						data.json[todoData.list][todoData.id] = todoData
-						data.array[todoData.list] = Object.keys(data.json[todoData.list]).map(el => data.json[todoData.list][el])
+						data.array[todoData.list] = Object.keys(data.json[todoData.list]).map(el => data.json[todoData.list][el]).sort((a, b) => b.created.seconds - a.created.seconds)
 						return data
 					})
 				} else if (change.type === 'removed') {
@@ -51,7 +51,7 @@ export function todosStoreSetListener(listId) {
 
 						if(listIdOfTodo != null) {
 							delete data.json[listIdOfTodo][change.doc.id]
-							data.array[listIdOfTodo] = Object.keys(data.json[listIdOfTodo]).map(el => data.json[listIdOfTodo][el])
+							data.array[listIdOfTodo] = Object.keys(data.json[listIdOfTodo]).map(el => data.json[listIdOfTodo][el]).sort((a, b) => b.created.seconds - a.created.seconds)
 						}
 						return data
 					})
@@ -65,7 +65,8 @@ export function todosStoreNewTodo(listId, title, callback) {
 
 	firebase.db.collection('todos').doc().set({
 		list: listId,
-		title
+		title,
+		created: firebase.firestore.FieldValue.serverTimestamp()
 	}).then(() => callback(true)).catch(err => callback(false))
 }
 

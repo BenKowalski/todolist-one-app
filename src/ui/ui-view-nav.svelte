@@ -7,13 +7,11 @@
 <header>
 	<h2>
 		{title}
-		<!-- {#if $router.subview}
-			/
-			<span>
-				{$router.subview.replace('-', ' ')}
-			</span>
-		{/if} -->
 	</h2>
+
+	<button>
+		<img src="/img/cog.svg" alt="Einstellungen" />
+	</button>
 </header>
 
 
@@ -23,6 +21,8 @@
 		display: block;
 		position: relative;
 		height:90px;
+		display:flex;
+		flex-direction: row;
 	}
 
 	header:after {
@@ -42,10 +42,23 @@
 		font-family:Georgia, sans-serif;
 		line-height: 90px;
 		padding:0 36px;
-		color:#111; /* #999; */
+		color:#111;
+		flex:1 100%;
 	}
 
-	h2 span {
-		color:#111;
+	button {
+		width:48px;
+		height: 48px;
+		border:0;
+		cursor:pointer;
+		margin:24px 24px 0 0;
+		background:transparent;
+		padding:14px;
+	}
+
+	button img {
+		display:block;
+		width:20px;
+		height:20px;
 	}
 </style>

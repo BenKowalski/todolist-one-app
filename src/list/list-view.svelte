@@ -10,7 +10,7 @@
 
 
 	let listActiveId = null,
-		newTodoPlaceholder = 'Click here to add todo',
+		newTodoPlaceholder = 'Click here to add todo!',
 		newTodoTitle = '',
 		newTodoInputEl
 
@@ -43,8 +43,8 @@
 		bind:value={newTodoTitle}
 		bind:this={newTodoInputEl}
 		placeholder="{newTodoPlaceholder}"
-		on:focus={e => newTodoPlaceholder = 'What\'s to do?'}
-		on:blur={e => { newTodoPlaceholder = 'What\'s to do?'; newTodoTitle = '' }}
+		on:focus={e => newTodoPlaceholder = 'What shoud be done?'}
+		on:blur={e => { newTodoPlaceholder = 'What shoud be done?'; newTodoTitle = '' }}
 		on:keydown={e => controlKeyDown(e, $listsStore.listActive.id)} />
 
 	{#if $todosStore.array[$listsStore.listActive.id].length > 0}
