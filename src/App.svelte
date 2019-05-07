@@ -6,6 +6,7 @@
 	import { todosStore, todosStoreInit } from './stores/todos-store.js'
 
 	import WelcomeOverlay from './overlays/welcome-overlay.svelte'
+	import UiLoader from './ui/ui-loader.svelte'
 	import UiMainNav from './ui/ui-main-nav.svelte'
 	import ListView from './list/list-view.svelte'
 
@@ -51,7 +52,7 @@
 {:else if $authStore.inited && $authStore.user === null}
 	<WelcomeOverlay />
 {:else}
-	Loading…
+	<UiLoader />
 {/if}
 
 <style>
