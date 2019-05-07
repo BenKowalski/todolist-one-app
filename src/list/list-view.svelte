@@ -1,7 +1,7 @@
 <script>
 	import { router } from '../stores/router-store.js'
 	import { listsStore } from '../stores/lists-store.js'
-	import { todosStore, todosStoreSetListener, todosStoreNewTodo, todosStoreToggleChecked } from '../stores/todos-store.js'
+	import { todosStore, todosStoreSetListener, todosStoreNewTodo } from '../stores/todos-store.js'
 	import { onMount } from 'svelte'
 
 	import UiViewNav from '../ui/ui-view-nav.svelte'
@@ -33,10 +33,6 @@
 			newTodoTitle = ''
 		}
 	}
-
-	function changeTodo(e, todo) {
-		todosStoreToggleChecked(todo.id, todo.checked)
-	}
 </script>
 
 {#if $listsStore.listActive}
@@ -54,9 +50,7 @@
 	<ul>
 		{#each $todosStore.array[$listsStore.listActive.id] as todo}
 			<li>
-				<ListTodo 
-					data={todo}
-					on:change={e =>changeTodo(e, todo)} />
+				<ListTodo data={todo} />
 			</li>
 		{/each}
 	</ul>

@@ -77,6 +77,12 @@ export function todosStoreToggleChecked(todoId, checked) {
 	})
 }
 
+export function todosStoreUpdateTitle(todoId, title) {
+	firebase.db.collection('todos').doc(todoId).update({
+    	title
+	})
+}
+
 export function todosStoreDelete(todoId) {
 	firebase.db.collection('todos').doc(todoId).delete()
 }

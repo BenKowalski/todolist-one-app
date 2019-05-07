@@ -1,37 +1,52 @@
 <script>
-	import { onMount, createEventDispatcher } from 'svelte'
-	import { todosStoreToggleChecked, todosStoreDelete } from '../stores/todos-store.js'
+	import { onMount, afterUpdate, createEventDispatcher } from 'svelte'
+	import { todosStoreToggleChecked, todosStoreUpdateTitle, todosStoreDelete } from '../stores/todos-store.js'
 
 	export let data
 	export let checked
 
-	let navOpened = false
+	let navOpened = false,
+		titleInputOpened = false,
+		titleInputEl
 
 	const dispatch = createEventDispatcher();
 
+	afterUpdate(() => {
+		if(titleInputOpened)
+			titleInputEl.select()
 
-	onMount(() => {
-
+		if(navOpened && titleInputOpened)
+			navOpened = false
+		
 	})
 </script>
 
 
 <div class="todo {navOpened ? 'nav-opened' : ''}">
-	<label>
-		<input 
-			type="checkbox" 
-			bind:checked={data.checked} 
-			on:change={e => dispatch('change', { checked: data.checked })} />
-		<p>
+	<div 
+		class="checkbox {data.checked ? 'checkbox-active' : ''}"
+		on:click={e => {console.log(data); todosStoreToggleChecked(data.id, !data.checked)}}></div>
+
+	{#if !titleInputOpened}
+		<p on:dblclick={e => titleInputOpened = true}>
 			{data.title}
 		</p>
-	</label>
+	{:else}
+		<input
+			type="text"
+			bind:this={titleInputEl}
+			value={data.title} 
+			on:blur={e => titleInputOpened = false}
+			on:change={e => todosStoreUpdateTitle(data.id, titleInputEl.value)}
+			on:keydown={e => e.keyCode === 13 ? titleInputEl.blur() : ''}/>
+	{/if}
+	
 	<button class="nav-opener" on:click={e => navOpened = true}>
 		<span></span>
 
 		{#if navOpened}
 			<div class="nav">
-				<button class="nav-item">
+				<button class="nav-item" on:click|stopPropagation={e => titleInputOpened = true}>
 					Change Task
 				</button>
 				<button class="nav-item" on:click|stopPropagation={e => todosStoreDelete(data.id)}>
@@ -54,67 +69,59 @@
 		flex-direction: flex-row;
 	}
 
-	label {
-		flex:1 100%;
-	}
-
 	.todo:hover, .todo.nav-opened {
 		background:#F5F7FA;
 	}
 
-	input {
-		width:1px;
-		height:1px;
-		position: absolute;
-		top:0;
-		left:-9999px;
-		border-radius: 3px;
-	}
-
-	input:checked +p:after {
-		transform:rotateZ(45deg) scale(1);
-	}
-
-	p {
+	input, p {
+		display:block;
 		position: relative;
-		padding:6px 6px 6px 48px;
+		padding:6px;
 		cursor: pointer;
-		-webkit-user-select: none;  
-		-moz-user-select: none;    
-		-ms-user-select: none;      
-		user-select: none;
 		font-size:16.5px;
 		line-height:30px;
 		margin:0;
+		flex:1 100%;
+		border:0;
+		background:transparent;
+		box-sizing: border-box;
+		outline:none;
 	}
 
-	p:before, p:after {
-		content:"";
-		display:block;
+	input {
+		height:42px;
+	}
+
+	.checkbox {
 		width:30px;
 		height:30px;
-		position:absolute;
-		top:6px;
-		left:6px;
+		margin:6px;
+		position: relative;
 		border:#1951C2 1px solid;
-		border-radius: 2px;
+		border-radius: 3px;
 		transition: all 150ms ease;
-	}
-
-	p:before {
 		background:#FFF;
+		cursor: pointer;
 	}
 
-	p:after {
+	.checkbox:after {
+		content:"";
+		display:block;
 		width:6px;
 		height:11px;
-		top:13px;
-		left:18px;
+		position: absolute;
+		top:7px;
+		left:10px;
 		border:#1951C2 3px solid;
 		border-top:0;
 		border-left:0;
 		border-radius: 0;
 		transform:rotateZ(0) scale(0);
+		transition:all 200ms ease;
+	}
+
+	.checkbox-active:after {
+		transform:rotateZ(45deg) scale(1);
 	}
 
 	.nav-opener {
