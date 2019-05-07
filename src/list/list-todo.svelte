@@ -1,6 +1,6 @@
 <script>
 	import { onMount, afterUpdate, createEventDispatcher } from 'svelte'
-	import { todosStoreToggleChecked, todosStoreUpdateTitle, todosStoreDelete } from '../stores/todos-store.js'
+	import { todosStoreUpdateTitle, todosStoreDelete } from '../stores/todos-store.js'
 
 	export let data
 	export let checked
@@ -8,8 +8,6 @@
 	let navOpened = false,
 		titleInputOpened = false,
 		titleInputEl
-
-	const dispatch = createEventDispatcher();
 
 	afterUpdate(() => {
 		if(titleInputOpened)
