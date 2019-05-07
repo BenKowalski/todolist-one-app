@@ -57,7 +57,7 @@
 		</ul>
 	{:else}
 		<p>
-			This list doesn't have any todo items. click into the field above to add one. If you need some help using Todolist One, please visit the <a href="https://todolist.one/help/">help section</a>.
+			This list doesn't have any todo items. click into the field above to add one. If you need some help using Todolist One, please visit the <a href="https://todolist.one/help/" target="_blank">help section</a>.
 		</p>
 	{/if}
 {:else}
