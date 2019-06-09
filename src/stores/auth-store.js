@@ -13,7 +13,7 @@ export const authStore = writable({
 export function authInit() {
 	var timeStart = Date.now()
 
-	console.log(firebase.auth().currentUser)
+	console.log(Date.now() - loadedTime)
 
 	firebase.auth().onAuthStateChanged(user => {
 		console.log('T', 'AUTH STATE CHANGED', Date.now() - timeStart, firebase.auth().currentUser)

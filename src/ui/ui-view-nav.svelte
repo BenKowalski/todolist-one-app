@@ -41,7 +41,7 @@
 		font-size:16.5px;
 		font-family:Georgia, sans-serif;
 		line-height: 60px;
-		padding:0 24px;
+		padding:0 24px 0 54px;
 		color:#111;
 		flex:1 100%;
 	}

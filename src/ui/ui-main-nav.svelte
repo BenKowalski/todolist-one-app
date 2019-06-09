@@ -1,6 +1,7 @@
 <script>
 	import { router } from '../stores/router-store.js';
 	import { listsStore, listsStoreNewList } from '../stores/lists-store.js';
+	import { uiStore, uiToggleMainNavOpened } from '../stores/ui-store.js'
 	import { onMount } from 'svelte'
 
 	let newListPlaceholder = '+ Add List',
@@ -18,16 +19,22 @@
 			newListInputEl.blur()	
 		}
 	}
+
+	function navClicked() {
+		if(true) {
+			uiToggleMainNavOpened()
+		}
+	}
 </script>
 
 
 
-<nav>
+<nav class={$uiStore.mainNavOpened ? 'main-nav-opened' : ''}>
 	{#if $listsStore.array}
 		<ul>
 			{#each $listsStore.array as list}
 				<li class="{ $router.subview === list.slug ? 'active' : ''}">
-					<a href="/lists/{list.slug}/">
+					<a href="/lists/{list.slug}/" on:click={e => navClicked()}>
 						{list.title}
 					</a>
 				</li>
@@ -54,27 +61,38 @@
 		position: fixed;
 		top:0;
 		left:0;
-		width:300px;
+		width:270px;
 		height:100%;
 		background:#1951C2;
 		z-index:1000;
 		overflow-x:hidden;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
-		display:none;
+		transform:translateX(-270px);
+		transition: all 100ms ease;
 	}
 
-	@media (min-width:1024px) {
+	.main-nav-opened {
+		transform:translateX(0);
+	}
+
+	@media (min-width:768px) {
 		nav {
-			display:block;
+			transform:translateX(0);
 		}
 	}
 
 	ul {
 		display: block;
 		list-style: none;
-		margin:0;
-		padding:48px 0 0 0;
+		margin:60px 0 0 0;
+		padding:0;
+	}
+
+	@media (min-width: 768px) {
+		ul {
+			margin:18px 0 0 0;
+		}
 	}
 
 	li {
@@ -89,13 +107,13 @@
 
 	a {
 		display:block;
-		padding:0 30px;
-		line-height:48px;
+		padding:0 24px;
+		line-height:44px;
 		color:rgba(255, 255, 255, .75);
 		font-family:Verdana, sans-serif;
 		font-weight:400;
-		font-size: 16.5px;
-		transition:all 150ms ease;
+		font-size: 13.2px;
+		transition:all 100ms ease;
 	}
 
 	a:hover {
@@ -107,13 +125,13 @@
 	input {
 		display:block;
 		width:100%;
-		padding:0 30px;
-		line-height:48px;
+		padding:0 24px;
+		line-height:42px;
 		color:rgba(255, 255, 255, .75);
 		font-family:Verdana, sans-serif;
 		font-weight:400;
-		font-size: 16.5px;
-		transition:all 150ms ease;
+		font-size: 13.2px;
+		transition:all 100ms ease;
 		background:transparent;
 		border:0;
 		color:#FFF;
