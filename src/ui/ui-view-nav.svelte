@@ -20,7 +20,7 @@
 	header {
 		display: block;
 		position: relative;
-		height:90px;
+		height:60px;
 		display:flex;
 		flex-direction: row;
 	}
@@ -38,10 +38,10 @@
 	}
 
 	h2 {
-		font-size:34px;
+		font-size:16.5px;
 		font-family:Georgia, sans-serif;
-		line-height: 90px;
-		padding:0 36px;
+		line-height: 60px;
+		padding:0 24px;
 		color:#111;
 		flex:1 100%;
 	}
@@ -51,7 +51,7 @@
 		height: 48px;
 		border:0;
 		cursor:pointer;
-		margin:24px 24px 0 0;
+		margin:6px 6px 0 0;
 		background:transparent;
 		padding:14px;
 	}
@@ -60,5 +60,21 @@
 		display:block;
 		width:20px;
 		height:20px;
+	}
+
+	@media (min-width: 768px) {
+		header {
+			height:90px;
+		}
+
+		h2 {
+			font-size:34px;
+			line-height: 90px;
+			padding:0 36px;
+		}
+
+		button {
+			margin:24px 24px 0 0;
+		}
 	}
 </style>

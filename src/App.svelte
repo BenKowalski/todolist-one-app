@@ -55,8 +55,12 @@
 	<UiLoader />
 {/if}
 
+<!--<a href="/lists/haushalt/">Rock</a>-->
+
 <style>
-	main {
-		margin-left:300px;
+	@media (min-width: 1024px) {
+		main {
+			margin-left:300px;
+		}
 	}
 </style>

@@ -96,4 +96,16 @@
 		max-width: 660px;
 		text-align: center;
 	}
+
+	@media (min-width:768px) {
+	input {
+		margin:30px 36px 18px 36px;
+		width:calc(100% - 36px - 36px);
+		background:#E6EAF2;
+		border:0;
+		line-height:24px;
+		padding:12px 24px;
+		outline:none;
+	}
+	}
 </style>

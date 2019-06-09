@@ -61,6 +61,13 @@
 		overflow-x:hidden;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
+		display:none;
+	}
+
+	@media (min-width:1024px) {
+		nav {
+			display:block;
+		}
 	}
 
 	ul {
