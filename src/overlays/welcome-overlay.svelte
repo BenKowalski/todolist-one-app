@@ -15,7 +15,7 @@
 	<button on:click={e => authSignInAnonymously()}>
 		Start anonymously
 	</button>
-	<button on:click={e => alert('NOT READY YET')}>
+	<button on:click={e => console.log('NOT READY YET')}>
 		Sign In with eMail
 	</button>
 </div>

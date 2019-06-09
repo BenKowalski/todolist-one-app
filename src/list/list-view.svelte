@@ -70,8 +70,8 @@
 <style>
 
 	input {
-		margin:30px 36px 18px 36px;
-		width:calc(100% - 36px - 36px);
+		margin:30px 24px 18px 24px;
+		width:calc(100% - 24px - 24px);
 		background:#E6EAF2;
 		border:0;
 		line-height:24px;
@@ -80,7 +80,7 @@
 	}
 
 	ul {
-		margin:0 36px;
+		margin:0 24px;
 		padding:0;
 		list-style: none;
 	}
@@ -100,8 +100,8 @@
 
 	@media (min-width:768px) {
 	input {
-		margin:30px 36px 18px 36px;
-		width:calc(100% - 36px - 36px);
+		margin:30px 24px 18px 24px;
+		width:calc(100% - 24px - 24px);
 		background:#E6EAF2;
 		border:0;
 		line-height:24px;

@@ -62,7 +62,8 @@
 
 <style>
 	.todo {
-		margin:0 0 6px -6px;
+		position: relative;
+		margin:0 0 0 -6px;
 		display: flex;
 		flex-direction: flex-row;
 	}
@@ -71,30 +72,43 @@
 		background:#F5F7FA;
 	}
 
+	.todo:after {
+		content:"";
+		display:block;
+		position: absolute;
+		bottom:0;
+		left:6px;
+		right:6px;
+		height:1px;
+		background: #DDD;
+    	transform: scaleY(.5);
+	}
+
 	input, p {
 		display:block;
 		position: relative;
 		padding:6px;
 		cursor: pointer;
-		font-size:16.5px;
-		line-height:30px;
+		font-size:13.2px;
+		line-height:36px;
 		margin:0;
 		flex:1 100%;
 		border:0;
 		background:transparent;
 		box-sizing: border-box;
 		outline:none;
+		height:48px;
 	}
 
 	input {
-		height:42px;
+		height:48px;
 	}
 
 	.checkbox {
-		width:30px;
-		height:30px;
-		min-width:30px;
-		margin:6px;
+		width:24px;
+		height:24px;
+		min-width:24px;
+		margin:12px 6px;
 		position: relative;
 		border:#1951C2 1px solid;
 		border-radius: 3px;
@@ -106,11 +120,11 @@
 	.checkbox:after {
 		content:"";
 		display:block;
-		width:6px;
-		height:11px;
+		width:5px;
+		height:9px;
 		position: absolute;
-		top:7px;
-		left:10px;
+		top:5px;
+		left:8px;
 		border:#1951C2 3px solid;
 		border-top:0;
 		border-left:0;
@@ -128,12 +142,15 @@
 		border:0;
 		background:#FFF;
 		width:30px;
+		min-width: 30px;
 		height:30px;
+		max-height: 30px;
 		float:right;
-		margin:6px;
+		margin:9px 6px;
 		opacity:0;
 		cursor: pointer;
 		border-radius: 3px;
+		padding:0;
 	}
 
 	.nav-opener span, .nav-opener span:before, .nav-opener span:after {
