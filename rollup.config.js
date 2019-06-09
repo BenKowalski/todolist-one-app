@@ -26,7 +26,7 @@ export default {
 			}
 		}),
 
-		serve({
+		!production && serve({
 			contentBase: 'public',
 			historyApiFallback: '/index.html',
 			host: 'localhost',
