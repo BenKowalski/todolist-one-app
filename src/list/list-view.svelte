@@ -70,12 +70,12 @@
 <style>
 
 	input {
-		margin:30px 24px 18px 24px;
+		margin:18px 24px 18px 24px;
 		width:calc(100% - 24px - 24px);
 		background:#E6EAF2;
 		border:0;
 		line-height:24px;
-		padding:12px 24px;
+		padding:12px 18px;
 		outline:none;
 	}
 
@@ -99,14 +99,14 @@
 	}
 
 	@media (min-width:768px) {
-	input {
-		margin:30px 24px 18px 24px;
-		width:calc(100% - 24px - 24px);
-		background:#E6EAF2;
-		border:0;
-		line-height:24px;
-		padding:12px 24px;
-		outline:none;
-	}
+		input {
+			margin:24px 24px 6px 24px;
+			width:calc(100% - 24px - 24px);
+			background:#E6EAF2;
+			border:0;
+			line-height:24px;
+			padding:12px 18px;
+			outline:none;
+		}
 	}
 </style>

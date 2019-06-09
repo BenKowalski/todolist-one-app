@@ -64,17 +64,17 @@
 
 	@media (min-width: 768px) {
 		header {
-			height:90px;
+			height:72px;
 		}
 
 		h2 {
 			font-size:34px;
-			line-height: 90px;
-			padding:0 36px;
+			line-height: 72px;
+			padding:0 24px;
 		}
 
 		button {
-			margin:24px 24px 0 0;
+			margin:12px 24px 0 0;
 		}
 	}
 </style>
