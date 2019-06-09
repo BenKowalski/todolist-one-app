@@ -47,7 +47,8 @@
 		on:blur={e => { newTodoPlaceholder = 'What shoud be done?'; newTodoTitle = '' }}
 		on:keydown={e => controlKeyDown(e, $listsStore.listActive.id)} />
 
-	{#if $todosStore.array[$listsStore.listActive.id].length > 0}
+	{#if $todosStore.array[$listsStore.listActive.id]
+		&& $todosStore.array[$listsStore.listActive.id].length > 0}
 		<ul>
 			{#each $todosStore.array[$listsStore.listActive.id] as todo}
 				<li>
