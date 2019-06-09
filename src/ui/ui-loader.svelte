@@ -2,7 +2,7 @@
 	import { fade } from 'svelte/transition';
 </script>
 
-<div class="ripple" out:fade>
+<div class="ripple"> <!-- out:fade -->
 	<div></div>
 	<div></div>
 </div>

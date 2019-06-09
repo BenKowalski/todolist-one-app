@@ -2,6 +2,7 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
+import serve from 'rollup-plugin-serve';
 import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -23,6 +24,13 @@ export default {
 			css: css => {
 				css.write('public/bundle.css');
 			}
+		}),
+
+		serve({
+			contentBase: 'public',
+			historyApiFallback: '/index.html',
+			host: 'localhost',
+			port: 10001
 		}),
 
 		// If you have external dependencies installed from

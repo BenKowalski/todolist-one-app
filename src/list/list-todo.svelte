@@ -93,11 +93,12 @@
 	.checkbox {
 		width:30px;
 		height:30px;
+		min-width:30px;
 		margin:6px;
 		position: relative;
 		border:#1951C2 1px solid;
 		border-radius: 3px;
-		transition: all 150ms ease;
+		transition: all 100ms ease;
 		background:#FFF;
 		cursor: pointer;
 	}
@@ -115,7 +116,7 @@
 		border-left:0;
 		border-radius: 0;
 		transform:rotateZ(0) scale(0);
-		transition:all 200ms ease;
+		transition:all 100ms ease;
 	}
 
 	.checkbox-active:after {
@@ -191,7 +192,7 @@
 		padding:0 18px;
 		margin:0;
 		width:100%;
-		transition: all 200ms ease;
+		transition: all 100ms ease;
 	}
 
 	.nav-item:hover {
