@@ -3,6 +3,7 @@
 <head>
 	<meta charset='utf8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="manifest" href="/manifest.json" />
 
 	<title>
 		Todolist.One
@@ -16,12 +17,21 @@
 
 	<script>
 		const loadedTime = Date.now()
+
+		if (!navigator.serviceWorker.controller) {
+			navigator.serviceWorker.register('/service-worker.js', {
+			scope: '/'
+			}).then(reg => {
+				console.log(reg.scope, 'register')
+				console.log('Service worker change, registered the service worker')
+			})
+		}
 	</script>
 
-  	<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-storage.js"></script>
+  	<script src="/firebase-app.js"></script>
+	<script src="/firebase-auth.js"></script>
+	<script src="/firebase-firestore.js"></script>
+	<script src="/firebase-storage.js"></script>
 	
 	<script src='/bundle.js'></script>
 </body>
