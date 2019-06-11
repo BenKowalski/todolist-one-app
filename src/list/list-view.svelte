@@ -86,8 +86,29 @@
 	}
 
 	li {
+		position: relative;
 		margin:0;
 		padding:0;
+	}
+
+	li:after {
+		content:"";
+		display:block;
+		position: absolute;
+		top:0;
+		left:6px;
+		right:6px;
+		height:1px;
+		background: #DDD;
+    	transform: scaleY(.5);
+	}
+
+	li:first-child:after {
+		display:none;
+	}
+
+	li:hover:after, li:hover + li:after {
+		display: none;
 	}
 
 	p {
@@ -100,7 +121,7 @@
 
 	@media (min-width:768px) {
 		input {
-			margin:24px 24px 6px 24px;
+			margin:24px 24px 18px 24px;
 			width:calc(100% - 24px - 24px);
 			background:#E6EAF2;
 			border:0;

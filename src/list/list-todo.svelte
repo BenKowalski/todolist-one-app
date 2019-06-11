@@ -62,7 +62,6 @@
 
 <style>
 	.todo {
-		position: relative;
 		margin:0 0 0 -6px;
 		display: flex;
 		flex-direction: flex-row;
@@ -70,18 +69,6 @@
 
 	.todo:hover, .todo.nav-opened {
 		background:#F5F7FA;
-	}
-
-	.todo:after {
-		content:"";
-		display:block;
-		position: absolute;
-		bottom:0;
-		left:6px;
-		right:6px;
-		height:1px;
-		background: #DDD;
-    	transform: scaleY(.5);
 	}
 
 	input, p {
@@ -123,8 +110,8 @@
 		width:5px;
 		height:9px;
 		position: absolute;
-		top:5px;
-		left:8px;
+		top:4px;
+		left:7px;
 		border:#1951C2 3px solid;
 		border-top:0;
 		border-left:0;
