@@ -2,7 +2,7 @@
   "name": "Todolist One",
   "short_name": "Todolist One",
   "theme_color": "#1951c2",
-  "background_color": "#1951c2",
+  "background_color": "#FFF",
   "display": "standalone",
   "orientation": "portrait",
   "Scope": "/",
